@@ -1,0 +1,14 @@
+set filesep " "
+set shellopts "-eu"
+
+# use a and A to create files and directories
+cmd createfile %[ -e $1 ] && printf "file exists" || touch $1
+cmd createdir %[ -e $1 ] && printf "directory exists" || mkdir $1
+map a push :createfile<space>
+map A push :createdir<space>
+
+# quick rename using r
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+map r push :rename<space>
+
+map <enter> shell
